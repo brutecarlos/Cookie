@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFF6E6"/>
+      <stop offset="1" stop-color="#FBE9C7"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#FBF7EF"/>
+  <g transform="translate(200,120)">
+    <!-- fortune cookie shell -->
+    <g transform="scale(1.6)">
+      <path d="M120 40 C170 10 260 5 320 40 C360 60 380 100 360 140 C310 220 160 220 100 160 C60 120 80 70 120 40 Z" fill="#F3C66A" stroke="#E2A84A" stroke-width="4"/>
+      <path d="M320 40 C360 60 380 100 360 140" fill="none" stroke="#D49B45" stroke-width="3" opacity="0.6"/>
+      <!-- inner shadow -->
+      <ellipse cx="210" cy="150" rx="120" ry="30" fill="#000" opacity="0.04"/>
+      <!-- fortune slip -->
+      <rect x="185" y="20" width="160" height="22" rx="4" fill="#FFF" transform="rotate(-18 265 31)"/>
+      <text x="230" y="36" font-family="Inter, Arial" font-size="12" fill="#333" transform="rotate(-18 230 36)">Your small daily thought</text>
+    </g>
+  </g>
+
+  <g transform="translate(640,260)">
+    <text x="0" y="-20" font-family="Inter, Arial" font-size="44" font-weight="700" fill="#111827">Cookie — one small daily fortune</text>
+    <text x="0" y="30" font-family="Inter, Arial" font-size="20" fill="#6b7280">Gentle, private and predictable — a tiny moment of calm every day.</text>
+  </g>
+
+  <g transform="translate(60,560)">
+    <rect x="0" y="0" width="1160" height="80" rx="12" fill="#fff" opacity="0.6"/>
+    <text x="40" y="52" font-family="Inter, Arial" font-size="16" fill="#374151">Auto-open daily popup · Copy & share · Local-only storage</text>
+  </g>
+</svg>
