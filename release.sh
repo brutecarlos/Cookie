@@ -107,6 +107,7 @@ fi
 
 echo "Release complete: version $NEW_VER"
 echo "ZIP: $ROOT_DIR/cookie-extension.zip"
+exit 0
 #!/usr/bin/env bash
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
