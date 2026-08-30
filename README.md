@@ -24,7 +24,7 @@ cd Cookie
 ```
 
 2. Prepare assets for the Web Store:
-- Icons: `icons/icon16.svg`, `icons/icon48.svg`, `icons/icon128.svg` (already present).
+- Icons: `icons/icon16.png`, `icons/icon48.png`, `icons/icon128.png` (already present).
 - Screenshots: replace the placeholder files in `store/screenshots/` with real PNG/JPG screenshots sized per Web Store requirements.
 - Privacy policy: see `store/privacy_policy.md` and provide a public URL if required by the store.
 
@@ -43,15 +43,6 @@ Privacy & data
 
 - Cookie stores only `installTime` and a local `seed` in `chrome.storage.local`.
 - No telemetry, analytics, or external servers are contacted.
-Privacy & data
-
-- The extension stores only `installTime` and a local `seed` in `chrome.storage.local`.
-- No telemetry, analytics, or external servers are contacted.
-1. Open the popup and enable the "Allow analytics (opt-in)" toggle.
-2. Provide your GA4 `Measurement ID` (G-XXXX) and an API secret.
-
-To disable analytics, turn the toggle off in the popup; stored credentials remain but events will not be sent unless enabled.
-
 
 Files of interest:
 
