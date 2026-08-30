@@ -17,7 +17,7 @@ Privacy / data usage summary (short):
 No personal data is collected or transmitted. The extension only stores an `installTime` and a local `seed` in `chrome.storage.local` to determine daily rotation. Quotes are bundled and served locally.
 
 Support / contact:
-Provide a support email or URL here (e.g. support@example.com) and a short reply time estimate.
+Support email: carlosluquetrad@gmail.com
 
 Promotional text:
 Receive one small daily thought — a tiny, predictable moment of calm in your day. Cookie keeps it simple, private and reliable.

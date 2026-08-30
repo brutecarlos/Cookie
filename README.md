@@ -27,6 +27,7 @@ cd Cookie
 - Icons: `icons/icon16.png`, `icons/icon48.png`, `icons/icon128.png` (already present).
 - Screenshots: replace the placeholder files in `store/screenshots/` with real PNG/JPG screenshots sized per Web Store requirements.
 - Privacy policy: see `store/privacy_policy.md` and provide a public URL if required by the store.
+- Content licensing: see `store/content_licensing.md` to confirm quote/image rights before submission.
 
 3. Use the generated `cookie-extension.zip` (created at the project root) to upload to the Chrome Web Store developer dashboard. Fill in the listing fields using `store/listing.md` as a draft.
 
