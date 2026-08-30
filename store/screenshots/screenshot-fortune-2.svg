@@ -4,10 +4,10 @@
     <g transform="translate(0,0) scale(0.9)">
       <path d="M120 40 C170 10 260 5 320 40 C360 60 380 100 360 140 C310 220 160 220 100 160 C60 120 80 70 120 40 Z" fill="#F3C66A" stroke="#E2A84A" stroke-width="3"/>
       <rect x="190" y="16" width="120" height="18" rx="3" fill="#FFF" transform="rotate(-18 250 25)"/>
-      <text x="210" y="30" font-family="Inter, Arial" font-size="9" fill="#333" transform="rotate(-18 210 30)">Today is a new opportunity to grow.</text>
+      <text x="210" y="30" font-size="9" fill="#333" transform="rotate(-18 210 30)">Today is a new opportunity to grow.</text>
     </g>
-    <text x="200" y="40" font-family="Inter, Arial" font-size="18" fill="#111827">Today&apos;s thought</text>
-    <text x="200" y="80" font-family="Inter, Arial" font-size="14" fill="#111827">Do not be afraid to take that next step.</text>
-    <text x="200" y="120" font-family="Inter, Arial" font-size="12" fill="#6b7280">Tap to copy or share — auto-dismisses after 10s</text>
+    <text x="200" y="40" font-size="18" fill="#111827">Today&apos;s thought</text>
+    <text x="200" y="80" font-size="14" fill="#111827">Do not be afraid to take that next step.</text>
+    <text x="200" y="120" font-size="12" fill="#6b7280">Tap to copy or share — auto-dismisses after 10s</text>
   </g>
 </svg>

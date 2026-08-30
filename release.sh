@@ -1,5 +1,114 @@
 #!/usr/bin/env bash
 set -euo pipefail
+
+# release.sh [version]
+# - If version provided: set manifest.json to that version
+# - Else: bump patch version
+
+ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
+MANIFEST="$ROOT_DIR/manifest.json"
+cd "$ROOT_DIR"
+
+if [[ ! -f "$MANIFEST" ]]; then
+  echo "manifest.json not found at $MANIFEST" >&2
+  exit 1
+fi
+
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "python3 is required" >&2
+  exit 1
+fi
+
+if [[ $# -gt 0 ]]; then
+  NEW_VER="$1"
+else
+  NEW_VER="$(python3 - <<'PY'
+import json
+with open('manifest.json','r',encoding='utf8') as f:
+    m=json.load(f)
+v=m.get('version','0.0.0').split('.')
+while len(v)<3:
+    v.append('0')
+v[-1]=str(int(v[-1])+1)
+print('.'.join(v))
+PY
+)"
+fi
+
+python3 - <<PY
+import json
+with open('manifest.json','r',encoding='utf8') as f:
+    m=json.load(f)
+m['version']='$NEW_VER'
+with open('manifest.json','w',encoding='utf8') as f:
+    json.dump(m,f,indent=2,ensure_ascii=False)
+print('manifest.json set to', '$NEW_VER')
+PY
+
+PNG_DIR="$ROOT_DIR/store/screenshots/pngs"
+mkdir -p "$PNG_DIR"
+
+CONV=""
+# prefer robust SVG renderers before ImageMagick
+if command -v rsvg-convert >/dev/null 2>&1; then
+  CONV="rsvg-convert"
+elif command -v inkscape >/dev/null 2>&1; then
+  CONV="inkscape"
+elif command -v magick >/dev/null 2>&1; then
+  CONV="magick"
+elif command -v convert >/dev/null 2>&1; then
+  CONV="convert"
+fi
+
+render_one() {
+  local input="$1" width="$2" height="$3" output="$4"
+  if [[ -z "$CONV" ]]; then
+    echo "No SVG converter installed. Skipping $input"
+    return 0
+  fi
+
+  echo "Rendering $input -> $output (${width}x${height}) with $CONV"
+  if [[ "$CONV" == "rsvg-convert" ]]; then
+    rsvg-convert -w "$width" -h "$height" "$input" -o "$output" || {
+      echo "WARN: failed rendering $input" >&2
+      return 0
+    }
+  elif [[ "$CONV" == "inkscape" ]]; then
+    inkscape "$input" --export-type=png --export-filename="$output" --export-width="$width" --export-height="$height" || {
+      echo "WARN: failed rendering $input" >&2
+      return 0
+    }
+  else
+    "$CONV" "$input" -background none -resize "${width}x${height}" "$output" || {
+      echo "WARN: failed rendering $input" >&2
+      return 0
+    }
+  fi
+}
+
+render_one "store/screenshots/hero-fortune-cookie.svg" 1280 720 "$PNG_DIR/hero-fortune-cookie.png"
+render_one "store/screenshots/screenshot-fortune-1.svg" 640 400 "$PNG_DIR/screenshot-fortune-1.png"
+render_one "store/screenshots/screenshot-fortune-2.svg" 440 280 "$PNG_DIR/screenshot-fortune-2.png"
+
+if [[ -f ./package.sh ]]; then
+  chmod +x ./package.sh
+  ./package.sh
+else
+  echo "package.sh not found" >&2
+  exit 1
+fi
+
+if command -v git >/dev/null 2>&1 && [[ -d .git ]]; then
+  git add --all
+  git commit -m "release: v${NEW_VER}" || echo "No changes to commit"
+  git tag -f "v${NEW_VER}" || true
+  echo "Created/updated local tag v${NEW_VER}"
+fi
+
+echo "Release complete: version $NEW_VER"
+echo "ZIP: $ROOT_DIR/cookie-extension.zip"
+#!/usr/bin/env bash
+set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT"
 
